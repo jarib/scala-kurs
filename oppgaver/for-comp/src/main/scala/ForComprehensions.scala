@@ -3,9 +3,7 @@ class ForComprehensions {
     def **(pow: Int) = math.pow(i, pow)
   }
 
-  def alleFaktorerAv(x: Int): Seq[Int] = for {
-    f <- 1 to x if x % f == 0
-  } yield f
+  def alleFaktorerAv(x: Int): Seq[Int] = ???
 
   /**
    * Et pytagoreisk trippel er (a, b, c) der
@@ -14,11 +12,7 @@ class ForComprehensions {
    *
    * ekstra utfordring: skriv hele metoden som _en_ for-comprehension
    */
-  def pytagoreiskeTripler: Seq[(Int, Int, Int)] = for {
-    a <- 1 to 100
-    b <- 1 to 100 if a < b
-    c <- 1 to 100 if b < c
-    if a ** 2 + b ** 2 == c ** 2
-  } yield (a, b, c)
+  def pytagoreiskeTripler: Seq[(Int, Int, Int)] = ???
+
 }
 
