@@ -1,11 +1,13 @@
 package scalakurs.for_comprehensions
 
+import scalakurs.functional.Functional
+
 object ForComprehensions {
   implicit class IntWithPower(i: Int) {
     def **(pow: Int) = math.pow(i, pow).toInt
   }
 
-  def alleFaktorerAv(x: Int): Seq[Int] = ???
+  def alleFaktorerAv(x: Int): Seq[Int] = for (i: Int <- 1 to x if x % i == 0) yield i;
 
   /**
    * Et pytagoreisk trippel er (a, b, c) der
@@ -17,7 +19,15 @@ object ForComprehensions {
    *
    * ekstra utfordring: skriv hele metoden som _en_ for-comprehension
    */
-  def pytagoreiskeTripler: Seq[(Int, Int, Int)] = ???
+  def pytagoreiskeTripler: Seq[(Int, Int, Int)] = {
+    for {
+      a: Int <- 1 to 100
+      b: Int <- 1 to 100
+      c: Int <- 1 to 100
+      if a ** 2 + b ** 2 == c ** 2
+      if a < b && b < c
+    } yield (a, b, c)
+  }
 
 }
 
