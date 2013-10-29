@@ -1,7 +1,5 @@
 package scalakurs.collections
 
-import scalakurs.functional.Functional
-
 object NumeriskeLister {
   def lagRange(fraInklusiv: Int, tilInklusiv: Int): Range = fraInklusiv to tilInklusiv
 
