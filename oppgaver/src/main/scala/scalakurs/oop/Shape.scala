@@ -14,7 +14,7 @@ trait Drawing extends Shape {
 }
 
 
-class Circle(center:Point, radius: Double) extends Shape(center) {
+class Circle(center:Point, radius: Double) extends Shape(center) with Drawing {
 
   def name: String = "circle"
 
@@ -23,7 +23,7 @@ class Circle(center:Point, radius: Double) extends Shape(center) {
   def circumference: Double = 2 * math.Pi * radius
 }
 
-class Rectangle(center: Point, height: Int, width: Int) extends Shape(center) {
+class Rectangle(center: Point, height: Int, width: Int) extends Shape(center) with Drawing {
   def name: String = "rectangle"
 
   def area: Double = height * width
@@ -31,7 +31,7 @@ class Rectangle(center: Point, height: Int, width: Int) extends Shape(center) {
   def circumference: Double = height * 2 + width * 2
 }
 
-class Square(center: Point, length: Int) extends Rectangle(center, length, length) {
+class Square(center: Point, length: Int) extends Rectangle(center, length, length) with Drawing {
   override def name: String = "square"
 }
 

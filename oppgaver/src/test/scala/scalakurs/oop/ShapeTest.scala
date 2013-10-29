@@ -35,9 +35,9 @@ class ShapeTest extends FunSuite with ShouldMatchers {
 /** Oppgave 3 - "tegn" alle shapes slik at testen kjører **/
 
   test("Draw elements to screen") {
-    val circle = new Circle(origo, 5) with Drawing
-    val square = new Square(origo, length = 4) with Drawing
-    val rectangle = new Rectangle(origo, height = 4, width = 6) with Drawing
+    val circle = new Circle(origo, 5)
+    val square = new Square(origo, length = 4)
+    val rectangle = new Rectangle(origo, height = 4, width = 6)
     val list = List(circle, square, rectangle)
     Shapes.draw(list)
   }
