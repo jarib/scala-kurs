@@ -7,7 +7,10 @@ object ForComprehensions {
     def **(pow: Int) = math.pow(i, pow).toInt
   }
 
-  def alleFaktorerAv(x: Int): Seq[Int] = for (i: Int <- 1 to x if x % i == 0) yield i;
+  def alleFaktorerAv(x: Int): Seq[Int] = for {
+      i: Int <- 1 to x
+      if x % i == 0
+    } yield i
 
   /**
    * Et pytagoreisk trippel er (a, b, c) der
@@ -22,10 +25,9 @@ object ForComprehensions {
   def pytagoreiskeTripler: Seq[(Int, Int, Int)] = {
     for {
       a: Int <- 1 to 100
-      b: Int <- 1 to 100
-      c: Int <- 1 to 100
+      b: Int <- 1 to 100 if a < b
+      c: Int <- 1 to 100 if b < c
       if a ** 2 + b ** 2 == c ** 2
-      if a < b && b < c
     } yield (a, b, c)
   }
 
