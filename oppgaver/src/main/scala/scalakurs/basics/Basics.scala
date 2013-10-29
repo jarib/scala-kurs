@@ -20,11 +20,9 @@ object Basics {
   def sum(f: Int => Int)(a: Int, b: Int): Int =
     if (a > b) 0 else f(a) + sum(f)(a + 1, b)
 
-  def sumSquares(x: Int, y: Int): Int = sum(square)(x, y)
+  def sumSquares = sum(square) _
 
-  def sumIntNew(x: Int, y: Int)  = {
-    /* hint */
-    def identity(x: Int): Int = x
-    sum(identity)(x, y)
+  def sumIntNew = {
+    sum(identity) _
   }
 }
