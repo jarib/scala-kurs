@@ -1,4 +1,4 @@
 language: scala
 scala: 
   - 2.10.2
-script: 'cd oppgaver && ./sbt "test-only scalakurs.basics.* scalakurs.functional.* scalakurs.for_comprehensions.* scalakurs.collections.NumeriskeListerTest"'
+script: 'cd oppgaver && ./sbt "test-only scalakurs.basics.* scalakurs.functional.* scalakurs.for_comprehensions.* scalakurs.collections.NumeriskeListerTest scalakurs.collections.MapOppgaverTest"'
