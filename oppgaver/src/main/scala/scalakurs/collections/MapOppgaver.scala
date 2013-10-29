@@ -1,9 +1,9 @@
 package scalakurs.collections
 
 object MapOppgaver {
-  def nyttMap[K, V](key: K, value: V): Map[K, V] = Map((key, value))
+  def nyttMap[K, V](key: K, value: V): Map[K, V] = Map(key, value)
 
-  def leggTilAssosiasjon[K, V](map: Map[K, V], key: K, value: V): Map[K, V] = map ++ Map((key, value))
+  def leggTilAssosiasjon[K, V](map: Map[K, V], key: K, value: V): Map[K, V] = map + (key, value)
 
   // ta bort assosiasjon med gitt key
   def taBortAssosiasjon[K, V](map: Map[K, V], key: K): Map[K, V] = map - key
@@ -17,7 +17,7 @@ object MapOppgaver {
   def mapMedDefault[K, V](l: List[(K, V)], default: V): Map[K, V] = l.toMap.withDefaultValue(default)
 
   // hint: orElse
-  def hentMedFallbackMap[K, V](key: K, mapA: Map[K, V], fallbackMap: Map[K, V]): V = mapA.get(key).orElse(fallbackMap.get(key)).get
+  def hentMedFallbackMap[K, V](key: K, mapA: Map[K, V], fallbackMap: Map[K, V]): V = mapA.orElse(fallbackMap)(key)
 }
 
 
