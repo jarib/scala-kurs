@@ -23,16 +23,23 @@ class Circle(center:Point, radius: Double) extends Shape(center) {
   def circumference: Double = 2 * math.Pi * radius
 }
 
-// TODO:
-// class Square ...
+class Rectangle(center: Point, height: Int, width: Int) extends Shape(center) {
+  def name: String = "rectangle"
 
-// class Rectangle
+  def area: Double = height * width
+
+  def circumference: Double = height * 2 + width * 2
+}
+
+class Square(center: Point, length: Int) extends Rectangle(center, length, length) {
+  override def name: String = "square"
+}
 
 case class Point(x: Int, y:Int)
 
 
 object Shapes {
-  
+
   def draw(shapes: List[Drawing]): Unit = shapes.foreach(_.draw())
-  
+
 }

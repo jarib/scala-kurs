@@ -8,7 +8,7 @@ class IntQueueTest extends ShouldMatchers with FunSuite {
   // OddNumberFiltering, Doubling, Incrementing, NegativeNumberFiltering
 
   test("stackable traits") {
-    val queue: IntQueue = ??? // hint: new BasicIntQueue with ??? with ???
+    val queue: IntQueue = new BasicIntQueue with Incrementing with Doubling
     queue.put(-10)
     queue.put(11)
     queue.put(20)
@@ -17,7 +17,7 @@ class IntQueueTest extends ShouldMatchers with FunSuite {
   }
 
   test("stackable traits 2") {
-    val queue: IntQueue = ??? // hint: new BasicIntQueue with ??? with ??? with ???
+    val queue: IntQueue = new BasicIntQueue with Doubling with Incrementing with NegativeNumberFiltering
     queue.put(-10)
     queue.put(11)
     queue.put(20)
@@ -26,7 +26,7 @@ class IntQueueTest extends ShouldMatchers with FunSuite {
   }
 
   test("stackable traits 3") {
-    val queue: IntQueue = ??? // hint: new BasicIntQueue with ??? with ???
+    val queue: IntQueue = new BasicIntQueue with Doubling with Incrementing
     queue.put(-10)
     queue.put(11)
     queue.put(20)
@@ -35,7 +35,7 @@ class IntQueueTest extends ShouldMatchers with FunSuite {
   }
 
   test("stackable traits 4") {
-    val queue: IntQueue = ??? // hint: new BasicIntQueue with ??? with ??? with ???
+    val queue: IntQueue = new BasicIntQueue with Doubling with NegativeNumberFiltering with OddNumberFiltering
     queue.put(-10)
     queue.put(11)
     queue.put(20)

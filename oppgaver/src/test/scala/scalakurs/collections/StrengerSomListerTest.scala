@@ -26,14 +26,14 @@ class StrengerSomListerTest extends FunSuiteHelper with ShouldMatchers {
     StrengerSomLister.nummerIAlfabetStreng("FINN") should be(List(5, 8, 13, 13))
   }
 
-  test("implementer rot13 for en char") {
-    StrengerSomLister.rot13('a') should be('a' + 13)
-    StrengerSomLister.rot13(StrengerSomLister.rot13('a')) should be('a')
-    StrengerSomLister.rot13(StrengerSomLister.rot13('z')) should be('z')
-    StrengerSomLister.rot13(' ') should be(' ')
-  }
-
-  test("implementer rot13") {
-    StrengerSomLister.rot13("fgevat re ra pbyyrpgvba") should be("string er en collection")
-  }
+//  test("implementer rot13 for en char") {
+//    StrengerSomLister.rot13('a') should be('a' + 13)
+//    StrengerSomLister.rot13(StrengerSomLister.rot13('a')) should be('a')
+//    StrengerSomLister.rot13(StrengerSomLister.rot13('z')) should be('z')
+//    StrengerSomLister.rot13(' ') should be(' ')
+//  }
+//
+//  test("implementer rot13") {
+//    StrengerSomLister.rot13("fgevat re ra pbyyrpgvba") should be("string er en collection")
+//  }
 }
