@@ -6,6 +6,7 @@ class Tree {
   lazy val rootValue: Option[String] = this match {
     case Leaf(value) => Option(value)
   }
+
   lazy val mkString: String = {
     @tailrec
     def getValues(str: String, list: List[Tree]): String = list.headOption match {
@@ -16,7 +17,6 @@ class Tree {
 
     getValues("", List(this))
   }
-
 
   lazy val nrOfEdges: Int = {
     @tailrec

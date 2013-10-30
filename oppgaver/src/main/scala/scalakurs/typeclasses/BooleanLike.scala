@@ -1,6 +1,6 @@
 package scalakurs.typeclasses
 
-trait BooleanLike[A] {
+trait BooleanLike[-A] {
   def asBoolean(a: A): Boolean
 }
 
@@ -10,9 +10,13 @@ object BooleanLike {
     def asBoolean(a: Int) = a != 0
   }
 
-  implicit lazy val stringBooleanLike: BooleanLike[String] = ???
+  implicit lazy val stringBooleanLike: BooleanLike[String] = new BooleanLike[String] {
+    def asBoolean(a: String) = a == "true"
+  }
 
-  implicit lazy val optionBooleanLike: BooleanLike[Option[_]] = ???
+  implicit lazy val optionBooleanLike: BooleanLike[Option[Any]] = new BooleanLike[Option[Any]] {
+    def asBoolean(o: Option[Any]) = o.isDefined
+  }
 
   /**
    * Get a hold of the implicit by adding a parameter list
@@ -25,8 +29,8 @@ object BooleanLike {
    * Maybe you need to take a look at the variance of the BooleanLike trait,
    * and also at the signature of the relevant implicit BooleanLike?
    */
-  implicit class AsBoolean[???](a: ???) {
-    def boolean: Boolean = ???
+  implicit class AsBoolean[A : BooleanLike](a: A) {
+    def boolean: Boolean = implicitly[BooleanLike[A]].asBoolean(a)
   }
 }
 
