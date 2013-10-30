@@ -31,8 +31,8 @@ object PatternMatching {
   // Hint: A tree can be both a Node(value, left, right) and
   // a Nil. Handle both cases, and use recursion to handle a Node's children.
   def contains(t: Tree, v: Int): Boolean = t match {
-    case Node(value, left, right) if value == v => true
-    case Node(value, left, right) => contains(left, v) || contains(right, v)
+    case Node(value, _, _) if value == v => true
+    case Node(_, left, right) => contains(left, v) || contains(right, v)
     case Nil => false
   }
 

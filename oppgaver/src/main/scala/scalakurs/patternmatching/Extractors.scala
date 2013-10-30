@@ -5,7 +5,7 @@ object Extractors {
   // Exercise 1: Implement Int.unapply.
   // Hint: Check if String is numeric in scala: input.forall(_.isDigit)
   object Int {
-    def unapply(s: String): Option[Int] = ???
+    def unapply(s: String): Option[Int] = if (s.forall(_.isDigit)) Some(s.toInt) else None
   }
 
   // Exercise 2: Implement PhoneNumber.unapply, which takes
@@ -17,7 +17,10 @@ object Extractors {
   //
   // Hint: The Int.unapply extractor from exercise 1 is useful for converting a String to an Int.
   object PhoneNumber {
-    def unapply(str: String): Option[(Int, Int)] = ???
+    def unapply(str: String): Option[(Int, Int)] = str.split(" ") match {
+      case Array(Int(a), Int(b)) => Some((a, b))
+      case _ => None
+    }
   }
 
 }
