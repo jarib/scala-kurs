@@ -11,7 +11,16 @@ case class User(id: Int,
                 gender: Option[Gender],
                 spouseId: Option[Int]) {
 
-  lazy val printable = ???
+  def printable = {
+    val prefix = (gender, spouseId) match {
+      case (Some(Male), _) => "Mr. "
+      case (Some(Female), Some(_)) => "Mrs. "
+      case (Some(Female), _) => "Ms. "
+      case _ => ""
+    }
+
+    prefix + s"$firstName $lastName"
+  }
 }
 
 object UserRepository {
@@ -23,11 +32,15 @@ object UserRepository {
     4 -> User(4, "Honey",   "Ryder", 27, Some(Female), None)
   )
 
-  def findById(id: Int): Option[User] = ???
+  def findById(id: Int): Option[User] = users.get(id)
 
-  def findAll: Iterable[User] = ???
+  def findAll: Iterable[User] = users.values
 
-  def findAllWithSpouse: Iterable[User] = ???
+  def findAllWithSpouse: Iterable[User] = users.values.filter(_.spouseId.isDefined)
 
-  def findPairById(id: Int): Option[(User, User)] = ???
+  def findPairById(id: Int): Option[(User, User)] = for {
+    user <- findById(id)
+    spouseId <- user.spouseId
+    spouse <- findById(spouseId)
+  } yield (user, spouse)
 }

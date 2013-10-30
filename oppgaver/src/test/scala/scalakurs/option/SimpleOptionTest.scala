@@ -6,7 +6,7 @@ import org.scalatest.matchers.ShouldMatchers
 class SimpleOptionTest extends FunSuite with ShouldMatchers {
   // hvis s er null skal funksjonen returnere None
   // hvis s ikke er null skal den returnere Some(s)
-  def wrapPossibleNull(s: String): Option[String] = ???
+  def wrapPossibleNull(s: String): Option[String] = if (s eq null) None else Some(s)
 
   test("translate null to None") {
     wrapPossibleNull(null) should be (None)
@@ -19,7 +19,7 @@ class SimpleOptionTest extends FunSuite with ShouldMatchers {
   ////////////////////
 
   def getSomeValueOrProvidedDefaultValue(opt: Option[String], defaultValue: String): String = {
-    ???
+    opt.getOrElse(defaultValue)
   }
 
   test("change None to \"default value\"") {
@@ -30,7 +30,10 @@ class SimpleOptionTest extends FunSuite with ShouldMatchers {
 
   // hvis begge tallene er definert (Some) skal Some(a+b) returneres
   // hvis minst en av tallene er None skal None returneres
-  def addOptionalInts(a: Option[Int], b: Option[Int]): Option[Int] = ???
+  def addOptionalInts(a: Option[Int], b: Option[Int]): Option[Int] = (a, b) match {
+    case (Some(x), Some(y)) => Option(x + y)
+    case _ => None
+  }
 
   test("add to optional numbers") {
     addOptionalInts(Some(1), Some(2)) should be (Some(3))
@@ -45,7 +48,10 @@ class SimpleOptionTest extends FunSuite with ShouldMatchers {
 
   // hvis alle verdiene er definert (Some) så skal Some(Person(...)) returneres
   // hvis minst en av verdiene er None skal None returneres
-  def createPerson(optionalName: Option[String], optionalAge: Option[Int]): Option[Person] = ???
+  def createPerson(optionalName: Option[String], optionalAge: Option[Int]): Option[Person] = for {
+    name <- optionalName
+    age  <- optionalAge
+  } yield Person(name, age)
 
   test("create person from optional values") {
     createPerson(Some("Kåre"), None) should be (None)
