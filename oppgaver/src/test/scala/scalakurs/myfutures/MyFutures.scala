@@ -13,36 +13,42 @@ object MyFutures {
 
   /* futures lages ved å wrappe ting i future() */
   def computeSquare(n: Int): Future[Int] = {
-    ???
+    future { n * n }
   }
 
   /* dette er snakk om å komponere to futures. En typisk måte å gjøre det på er via map */
   def computeSquare(f: Future[Int]): Future[Int] = {
-    ???
+    f.map(n => n * n)
   }
 
   /* ligner på computeSquare(), men må gjøre en liste-operasjon */
   def findMaxFactor(work: FactorNumber): Future[Long] = {
-    ???
+    future { work.perform().max }
   }
 
   def findMaxFactor(work: Future[FactorNumber]): Future[Long] = {
-    ???
+    work.map(_.perform().max)
   }
 
   /* Future.recoverWith eller Future.fallbackTo */
   def computeRiskySumFallbackOnSafeSum(riskyWork: SumSequence, safeWork: SumSequence): Future[Int] = {
-    ???
+    val risky = future { riskyWork.perform() }
+    val safe = future { safeWork.perform() }
+
+    risky.recoverWith {
+      case e: Throwable => safe
+    }
   }
 
   /* Trenger ikke regne ut max faktor for alle elementene i lista i parallell. Det er neste oppgave */
   def findSumOfAllMaxFactors(work: Seq[FactorNumber]): Future[Long] = {
-    ???
+    future { work.map(n => n.perform().max).sum }
   }
 
   /* Seq[Future[Long]] kan gjøres om til Future[Seq[Long]] ved å bruke Future.sequence(fs: List[Future]]) */
   def findMaxFactorOfAllMaxFactorsInParallel(work: Seq[FactorNumber]): Future[Long] = {
-    ???
+    val futures = work.map(w => future { w.perform().max } )
+    Future.sequence(futures).map(n => n.max)
   }
 }
 
